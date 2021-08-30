@@ -11,7 +11,11 @@ ERROR_MESSAGES = {
     ERROR_AUTH_TITLE_LENGTH: "Tytuł strony musze mieć do 150 znaków",
     ERROR_AUTH_TITLE_EMPTY: "Proszę prowadzić tytuł strony",
     ERROR_AUTH_USERNAME_UNKNOWN: "Nie znamy strony z takim imieniem",
-    ERROR_AUTH_PASSWORD_WRONG: "Hasło nie jest poprawnie"
+    ERROR_AUTH_PASSWORD_WRONG: "Hasło nie jest poprawnie",
+
+    ERROR_USER_NOT_FOUND: "Nie znam takiej strony",
+
+    ERROR_POST_EMPTY: "Proszę coś napisać"
 }
 
 LOGIN_MESSAGE = "Proszę się zalogować"

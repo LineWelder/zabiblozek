@@ -6,10 +6,8 @@
 {% else %}
     <h1>Witam w moim blożku! Proszę się zalogować</h1>
 {% endif %}
-<h2>Oto wszystkie strony:</h2>
-<ul>
-{% for user in users %}
-    <li>{{user.title}} <small class="text-muted">@{{user.username}}</small></li>
-{% endfor %}
-</ul>
+<h2 align=center>
+    <a class="btn btn-primary" href="/new-post">Napisz wiadomość</a>
+</h2>
+{% include 'wall.html' %}
 {% endblock %}

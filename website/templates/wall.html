@@ -1,0 +1,15 @@
+{% for post in posts %}
+    <div class="card mb-1">
+        <div class="card-body">
+            <h5 class="card-title d-md-inline mb-1">{{post.user.title}}</h5>
+            <h6 class="card-subtitle d-md-inline ms-md-1 mb-1">
+                <a
+                    class="text-muted text-decoration-none text-nowrap"
+                    href="/{{post.user.username}}"
+                >@{{post.user.username}}</a>
+            </h6>
+
+            <p class="card-text">{{post.content}}</p>
+        </div>
+    </div>
+{% endfor %}

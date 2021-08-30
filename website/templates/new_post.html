@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Napisz wiadomość{% endblock %}
+{% block content %}
+<form method="POST">
+    <h3 align="center">Napisz wiadomość</h3>
+
+    <textarea name="content" class="form-control" id="content"></textarea>
+
+    <br/>
+
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Napisz</button>
+    </div>
+</form>
+{% endblock %}

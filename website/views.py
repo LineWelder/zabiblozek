@@ -1,5 +1,11 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for, request
+from flask_login import login_required, current_user
+
 from backend.models import User
+from backend.user import get_user
+from backend.post import get_wall, create_post
+from backend.consts import SUCCESS_CODE
+from .strings import ERROR_MESSAGES
 
 
 blueprint = Blueprint("views", __name__)
@@ -8,14 +14,33 @@ blueprint = Blueprint("views", __name__)
 @blueprint.route("/")
 @blueprint.route("/home")
 def home():
-    return render_template("home.html", users=User.query.all())
+    _, posts = get_wall()
+    return render_template("home.html", posts=posts)
 
 
 @blueprint.route("/<username>")
 def user_page(username):
-    user = User.query.filter_by(username=username).first()
-    if not user:
-        flash(f"Strony @{username} nie ma", category="error")
-        return redirect(url_for("views.home"))
+    error_code, user = get_user(username)
+    if error_code == SUCCESS_CODE:
+        error_code, posts = get_wall(username)
+        if error_code == SUCCESS_CODE:
+            return render_template("user_page.html", user=user, posts=posts)
 
-    return render_template("user_page.html", user=user)
+    flash(ERROR_MESSAGES[error_code], category="error")
+    return redirect(url_for("views.home"))
+
+
+@blueprint.route("/new-post", methods=["GET", "POST"])
+@login_required
+def new_post():
+    if request.method == "POST":
+        content = request.form.get("content")
+
+        error_code, user = create_post(current_user.id, content)
+        if error_code == SUCCESS_CODE:
+            flash("Wiadomość odesłana!", category="success")
+            return redirect(url_for("views.home"))
+        else:
+            flash(ERROR_MESSAGES[error_code], category="error")
+
+    return render_template("new_post.html")
