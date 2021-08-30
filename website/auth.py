@@ -1,15 +1,15 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required
 
-from users import check_login, register_user
-from consts import SUCCESS_CODE
+from backend.auth import check_login, register_user
+from backend.consts import SUCCESS_CODE
 from .strings import ERROR_MESSAGES
 
 
-auth = Blueprint("auth", __name__)
+blueprint = Blueprint("auth", __name__)
 
 
-@auth.route("/login", methods=["GET", "POST"])
+@blueprint.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form.get("username")
@@ -26,7 +26,7 @@ def login():
     return render_template("login.html")
 
 
-@auth.route("/sign-up", methods=["GET", "POST"])
+@blueprint.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
         username = request.form.get("username")
@@ -45,7 +45,7 @@ def sign_up():
     return render_template("signup.html")
 
 
-@auth.route("/logout")
+@blueprint.route("/logout")
 @login_required
 def logout():
     logout_user()

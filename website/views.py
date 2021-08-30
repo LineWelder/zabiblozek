@@ -1,17 +1,17 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
-from models import User
+from backend.models import User
 
 
-views = Blueprint("views", __name__)
+blueprint = Blueprint("views", __name__)
 
 
-@views.route("/")
-@views.route("/home")
+@blueprint.route("/")
+@blueprint.route("/home")
 def home():
     return render_template("home.html", users=User.query.all())
 
 
-@views.route("/<username>")
+@blueprint.route("/<username>")
 def user_page(username):
     user = User.query.filter_by(username=username).first()
     if not user:

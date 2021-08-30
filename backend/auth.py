@@ -2,8 +2,8 @@ from flask import url_for, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from extensions import db
-from models import User
-from consts import *
+from .consts import *
+from .models import User
 
 
 def check_login(username, password):

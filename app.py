@@ -1,8 +1,7 @@
 from flask import Flask, url_for
 
 from extensions import *
-from website.views import views
-from website.auth import auth
+from website import auth, views
 
 
 def create_app():
@@ -14,14 +13,14 @@ def create_app():
     login_manager.init_app(app)
     db.init_app(app)
 
-    from models import User
+    from backend.models import User
     db.create_all(app=app)
 
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
 
-    app.register_blueprint(views)
-    app.register_blueprint(auth)
+    app.register_blueprint(views.blueprint)
+    app.register_blueprint(auth.blueprint)
 
     return app

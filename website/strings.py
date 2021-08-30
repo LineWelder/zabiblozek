@@ -1,4 +1,4 @@
-from consts import *
+from backend.consts import *
 
 
 ERROR_MESSAGES = {
