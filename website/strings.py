@@ -15,7 +15,9 @@ ERROR_MESSAGES = {
 
     ERROR_USER_NOT_FOUND: "Nie znam takiej strony",
 
-    ERROR_POST_EMPTY: "Proszę coś napisać"
+    ERROR_POST_EMPTY: "Proszę coś napisać",
+    ERROR_POST_NOT_FOUND: "Takiej wiadomości nikt nie pisał",
+    ERROR_POST_ACCESS_DENIED: "Nie możesz tego zrobić"
 }
 
 LOGIN_MESSAGE = "Proszę się zalogować"

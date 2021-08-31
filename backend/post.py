@@ -20,6 +20,25 @@ def create_post(author_id, content):
     return SUCCESS_CODE, new_post
 
 
+def get_post(id):
+    post = Post.query.get(id)
+    if not post:
+        return ERROR_POST_NOT_FOUND, None
+
+    return SUCCESS_CODE, post
+
+
+def delete_post(id):
+    post = Post.query.get(id)
+    if not post:
+        return ERROR_POST_NOT_FOUND, None
+
+    db.session.delete(post)
+    db.session.commit()
+    
+    return SUCCESS_CODE, None
+
+
 def get_wall(author=None):
     if author:
         user = User.query.filter_by(username=author).first()

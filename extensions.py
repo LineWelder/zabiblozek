@@ -10,5 +10,4 @@ login_manager.login_view = "auth.login"
 login_manager.login_message = LOGIN_MESSAGE
 login_manager.login_message_category = "error"
 
-
 db = SQLAlchemy()
