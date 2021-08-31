@@ -39,12 +39,23 @@ def delete_post(id):
     return SUCCESS_CODE, None
 
 
+def edit_post(id, content):
+    post = Post.query.get(id)
+    if not post:
+        return ERROR_POST_NOT_FOUND, None
+
+    post.content = content
+    db.session.commit()
+
+    return SUCCESS_CODE, post
+
+
 def get_wall(author=None):
     if author:
         user = User.query.filter_by(username=author).first()
         if not user:
             return ERROR_USER_NOT_FOUND, None
 
-        return SUCCESS_CODE, user.posts
+        return SUCCESS_CODE, reversed(user.posts)
     
     return SUCCESS_CODE, Post.query.order_by(Post.date_created.desc()).all()
