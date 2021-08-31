@@ -129,5 +129,9 @@
 
             <p class="card-text" id="content-{{post.id}}">{{post.content}}</p>
         </div>
+
+        <div class="card-footer text-muted">
+            {{"{:%d.%m.%Y %H:%M}".format(post.date_created)}}
+        </div>
     </div>
 {% endfor %}
