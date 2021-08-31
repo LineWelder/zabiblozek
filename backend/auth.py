@@ -10,7 +10,7 @@ def check_login(username, password):
     user = User.query.filter_by(username=username).first()
 
     if not user:
-        return ERROR_AUTH_USERNAME_UNKNOWN, None
+        return ERROR_USER_NOT_FOUND, None
     if not check_password_hash(user.password, password):
         return ERROR_AUTH_PASSWORD_WRONG, None
     return SUCCESS_CODE, user

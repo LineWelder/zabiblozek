@@ -10,10 +10,9 @@ ERROR_MESSAGES = {
     ERROR_AUTH_PASSWORD_DO_NOT_MATCH: "Hasła nie zbiegają się",
     ERROR_AUTH_TITLE_LENGTH: "Tytuł strony musze mieć do 150 znaków",
     ERROR_AUTH_TITLE_EMPTY: "Proszę prowadzić tytuł strony",
-    ERROR_AUTH_USERNAME_UNKNOWN: "Nie znamy strony z takim imieniem",
     ERROR_AUTH_PASSWORD_WRONG: "Hasło nie jest poprawnie",
 
-    ERROR_USER_NOT_FOUND: "Nie znam takiej strony",
+    ERROR_USER_NOT_FOUND: "Nie znamy takiej strony",
 
     ERROR_POST_EMPTY: "Proszę coś napisać",
     ERROR_POST_NOT_FOUND: "Takiej wiadomości nikt nie pisał",
