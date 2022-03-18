@@ -1,6 +1,7 @@
 from flask import Flask, url_for
 
 from extensions import *
+from api import api
 from website import auth, views
 
 
@@ -20,6 +21,7 @@ def create_app():
     def load_user(id):
         return User.query.get(int(id))
 
+    app.register_blueprint(api.blueprint)
     app.register_blueprint(views.blueprint)
     app.register_blueprint(auth.blueprint)
 

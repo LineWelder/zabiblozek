@@ -6,8 +6,6 @@
 {% else %}
     <h1>Witam w moim blożku! Proszę się zalogować</h1>
 {% endif %}
-<h2 align=center>
-    <a class="btn btn-primary" href="/new-post">Napisz wiadomość</a>
-</h2>
+{% include 'new_post.html' %}
 {% include 'wall.html' %}
 {% endblock %}

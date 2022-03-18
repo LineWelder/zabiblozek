@@ -28,19 +28,3 @@ def user_page(username):
 
     flash(ERROR_MESSAGES[error_code], category="error")
     return redirect(url_for("views.home"))
-
-
-@blueprint.route("/new-post", methods=["GET", "POST"])
-@login_required
-def new_post():
-    if request.method == "POST":
-        content = request.form.get("content")
-
-        error_code, user = create_post(current_user.id, content)
-        if error_code == SUCCESS_CODE:
-            flash("Wiadomość odesłana!", category="success")
-            return redirect(url_for("views.home"))
-        else:
-            flash(ERROR_MESSAGES[error_code], category="error")
-
-    return render_template("new_post.html")

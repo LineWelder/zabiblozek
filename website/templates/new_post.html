@@ -1,15 +1,68 @@
-{% extends "base.html" %}
-{% block title %}Napisz wiadomość{% endblock %}
-{% block content %}
-<form method="POST">
-    <h3 align="center">Napisz wiadomość</h3>
+<div
+    class="modal fade"
+    id="new-post-modal"
+    tabindex="-1"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nowa wiadomość</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+            </div>
 
-    <textarea name="content" class="form-control" id="content"></textarea>
+            <div class="modal-body">
+                <form>
+                    <textarea class="form-control" id="new-post-content"></textarea>
+                </form>
+            </div>
 
-    <br/>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >Anuluj</button>
 
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Napisz</button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="createPost()"
+                    data-bs-dismiss="modal"
+                >Napisz</button>
+            </div>
+        </div>
     </div>
-</form>
-{% endblock %}
+</div>
+
+<script>
+    var newPostContent = document.getElementById("new-post-content");
+
+    async function createPost()
+    {
+        var resp = await fetch(
+            `api/posts`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: newPostContent.value })
+            }
+        );
+
+        if (resp.ok)
+            location.reload();
+        else
+            console.log(await resp.json());
+    }
+</script>
+
+<h2 align=center>
+    <button
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#new-post-modal"
+    >Napisz wiadomość</button>
+</h2>
